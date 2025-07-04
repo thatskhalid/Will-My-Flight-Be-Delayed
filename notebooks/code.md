@@ -47,9 +47,3 @@ predictions1 = model1.predict(X1_test)
 
 score = accuracy_score(y1_test, predictions1)
 score
-print(X1_train.shape , X1_test.shape)
-import seaborn as sns
-import matplotlib.pyplot as plt
-
-sns.heatmap(df.corr(numeric_only=True), annot=True, cmap="coolwarm")
-plt.show()
