@@ -49,6 +49,11 @@ for col in feature_columns:
 
 input_df = pd.DataFrame(input_data)[feature_columns]
 
+print("Model expects:", regressor.feature_names_in_)
+print("You provided:", input_df.columns.tolist())
+
+
+
 # === Prediction Button ===
 if st.button("Predict Delay"):
     delay_rate = regressor.predict(input_df)[0]
