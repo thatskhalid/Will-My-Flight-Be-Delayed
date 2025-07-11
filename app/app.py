@@ -2,11 +2,14 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
+from pathlib import Path
+
+base_dir = Path(__file__).resolve().parent.parent  # Goes up from /app to project root
 
 # Load saved model and columns
-regressor = joblib.load("/Users/khalidmahmood/Coding Workspace/Will-My-Flight-Be-Delayed/model/rf_regressor.pkl")
-classifier = joblib.load("/Users/khalidmahmood/Coding Workspace/Will-My-Flight-Be-Delayed/model/rf_classifier.pkl")
-feature_columns = joblib.load("/Users/khalidmahmood/Coding Workspace/Will-My-Flight-Be-Delayed/model/feature_columns.pkl")
+regressor = joblib.load(base_dir / "model" / "rf_regressor.pkl")
+classifier = joblib.load(base_dir / "model" / "rf_classifier.pkl")
+feature_columns = joblib.load(base_dir / "model" / "feature_columns.pkl")
 
 # App setup
 st.set_page_config(page_title="Will My Flight Be Delayed?", layout="centered")
