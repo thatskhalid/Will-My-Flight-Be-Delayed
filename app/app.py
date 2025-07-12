@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import joblib
 from pathlib import Path
+import pydeck as pdk
 
 base_dir = Path(__file__).resolve().parent.parent  # Goes up from /app to project root
 
@@ -51,4 +52,22 @@ if st.button("Predict Delay Rate"):
         st.error("⚠️ High Risk of Delay (20%+)")
     else:
         st.success("✅ Low Risk of Delay (< 20%)")
+
+
+# Load airport coordinates
+coords = pd.read_csv("/Users/khalidmahmood/Coding Workspace/Will-My-Flight-Be-Delayed/data/airport_coords.csv")
+
+# Match with user input
+airport = airport.strip().upper()
+if airport in coords["IATA"].values:
+    loc = coords[coords["IATA"] == airport].iloc[0]
+    df_map = pd.DataFrame({
+        "lat": [loc["Latitude"]],
+        "lon": [loc["Longitude"]],
+        "label": [airport]
+    })
+    st.map(df_map)
+else:
+    st.warning(f"📍 No coordinate found for airport '{airport}'")
+
 
