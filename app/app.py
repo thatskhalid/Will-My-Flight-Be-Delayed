@@ -55,7 +55,7 @@ if st.button("Predict Delay Rate"):
 
 
 # Load airport coordinates
-coords = pd.read_csv("/Users/khalidmahmood/Coding Workspace/Will-My-Flight-Be-Delayed/data/airport_coords.csv")
+coords = pd.read_csv(base_dir / "data" / "airport_coords.csv")
 
 # Match with user input
 airport = airport.strip().upper()
